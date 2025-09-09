@@ -1,7 +1,6 @@
 import os
 import logfire
 from pydantic import BaseModel
-
 from agents.dataset_agent.engine_requests import get_table_columns
 from .query_translator import query_translator_agent
 from .query_extractor import query_extractor_agent
@@ -64,6 +63,9 @@ async def dataset_editor(
 
         result = await query_generator_agent.run(user_prompt, deps=default_dialect)
 
+        print("GENERATOR RESULT")
+        print(result)
+
         if result.output.error:
             return result.output.error
         if result.output.sql:
@@ -79,12 +81,10 @@ async def dataset_editor(
         for dialect in supported_dialects_without_default:
             result = await query_translator_agent.run(
                 f"""
-                Translate this SQL query {sql} from {default_dialect} to {dialect} dialect
+                Translate this SQL query "{sql}" from {default_dialect.value} to {dialect.value} dialect
 
-                For context, the user query that was used to generate the original sql query is {planner_result.output.user_query},
+                For context, the user query that was used to generate the original sql query is "{planner_result.output.user_query}",
                 And these are the used columns used in the SQL expression with their data types: {used_columns} 
-            
-
                 """,
                 deps={
                     "source_dialect": default_dialect,
