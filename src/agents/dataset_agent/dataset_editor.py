@@ -1,3 +1,4 @@
+import os
 import logfire
 from pydantic import BaseModel
 
@@ -6,10 +7,10 @@ from .query_translator import query_translator_agent
 from .query_extractor import query_extractor_agent
 from .query_generator import query_generator_agent
 
+logfire_token = os.environ["LOGFIRE_TOKEN"]
+
 # 'if-token-present' means nothing will be sent (and the example will work) if you don't have logfire configured
-logfire.configure(
-    send_to_logfire="pylf_v1_eu_pNbXJRF0MNQn8yCYmSPbYpQC0tG4W4rP446ml5H9cq11"
-)
+logfire.configure(send_to_logfire=logfire_token)
 logfire.instrument_pydantic_ai()
 # logfire.instrument_httpx(capture_all=True)
 
