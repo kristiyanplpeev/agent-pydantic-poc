@@ -1,0 +1,17 @@
+[project]
+name = "agent-pydantic-poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.116.1",
+    "httpx>=0.28.1",
+    "logfire[httpx]>=4.3.2",
+    "pydantic-ai[logfire]==1.0.0",
+    "pydantic-graph>=0.7.0",
+    "python-dotenv>=1.1.1",
+]
+
+[dependency-groups]
+dev = []
