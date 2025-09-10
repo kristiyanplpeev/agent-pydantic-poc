@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from pydantic_ai import Agent, RunContext
 from pydantic_ai.models.google import GoogleModel
-from common.providers.model_providers import google_provider, openai_provider
+from common.providers.model_providers import google_provider
 
 
 query_translator_model = GoogleModel("gemini-2.5-flash", provider=google_provider)

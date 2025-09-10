@@ -3,7 +3,9 @@ from enum import Enum
 
 from pydantic_ai import Agent
 from pydantic_ai.models.google import GoogleModel
-from pydantic_ai.providers.google import GoogleProvider
+from common.providers.model_providers import (
+    google_provider,
+)
 
 
 class SupportedDialects(str, Enum):
@@ -14,9 +16,7 @@ class SupportedDialects(str, Enum):
     Iris = "Iris"
 
 
-provider = GoogleProvider(api_key="AIzaSyATMClWVlbQ3Te1_nn25dP0tyAHLYNA5LQ")
-
-planner_model = GoogleModel("gemini-2.5-flash", provider=provider)
+planner_model = GoogleModel("gemini-2.5-flash", provider=google_provider)
 
 
 class QueryExtractorOutput(BaseModel):

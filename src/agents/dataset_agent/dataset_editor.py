@@ -8,7 +8,6 @@ from .query_generator import query_generator_agent
 
 logfire_token = os.environ["LOGFIRE_TOKEN"]
 
-# 'if-token-present' means nothing will be sent (and the example will work) if you don't have logfire configured
 logfire.configure(send_to_logfire=logfire_token)
 logfire.instrument_pydantic_ai()
 # logfire.instrument_httpx(capture_all=True)
