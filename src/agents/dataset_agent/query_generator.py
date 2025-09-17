@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 from pydantic_ai import Agent, RunContext
 from pydantic_ai.models.google import GoogleModel
-from common.providers.model_providers import google_provider
+from pydantic_ai.models.anthropic import AnthropicModel
+from common.providers.model_providers import google_provider, anthropic_provider
 
 
 class Column(BaseModel):
@@ -18,12 +19,12 @@ class QueryGeneratorOutput(BaseModel):
 # mcp_server = MCPServerSSE(url="http://localhost:8003/sse")
 
 
-query_generator_model = GoogleModel(
-    "gemini-2.5-pro", provider=google_provider, settings={"temperature": 0}
-)
-# query_generator_model = AnthropicModel(
-#     "claude-opus-4-1-20250805", provider=anthropic_provider, settings={"temperature": 0}
+# query_generator_model = GoogleModel(
+#     "gemini-2.5-pro", provider=google_provider, settings={"temperature": 0}
 # )
+query_generator_model = AnthropicModel(
+    "claude-opus-4-1-20250805", provider=anthropic_provider, settings={"temperature": 0}
+)
 # query_generator_model = OpenAIChatModel(
 #     "gpt-5-mini", provider=openai_provider, settings={"temperature": 0}
 # )
